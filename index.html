@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset = "utf-8">
+	<title>Contact Card</title>
+	<meta name="description" content="">
+	<style type="text/css">
+		#left_side{
+			display: inline-block;
+			width: 400px;
+		}
+		#right_side{
+			width: 300px;
+			display: inline-block;
+			vertical-align: top;
+		}
+		.card{
+			border: 1px solid black;
+			width: 300px;
+			height: 200px;
+			display: inline-block;
+			margin-top: 20px;
+		}
+		.name{
+			text-align: center;
+		}
+		.description{
+			width: 295px;
+			display: none;
+		}
+	</style>
+	<script src= 'http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'>
+	</script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+
+			$("form").submit(function(){
+				$('#right_side').append("<div class='card'>" +
+					"<h1 class='name'>" + $('#firstname').val() + " " + 
+					$('#lastname').val() + "<p>Click for description!</p></h1>" + 
+					"<p class='description'>" + $('#description').val() + "</p>" + 
+					"</div>");
+				$('.card').css('cursor','pointer');
+				return false;
+			});
+
+			$("#right_side").on("click", ".card", function(){
+				$(this).find('.name').toggle();
+				$(this).find('.description').toggle();
+			});
+		});
+	</script>
+</head>
+<body>
+	<div id="left_side">
+		<form>
+			<p>
+				<label for="firstname">First name:</label>
+				<input type="textbox" name="firstname" id="firstname">
+			</p>
+			<p>
+				<label for="lastname">Last name:</label>
+				<input type="textbox" name="lastname" id="lastname">
+			</p>
+			<p><label for="description">Description:</label></p>
+			<p>
+				<textarea name="description" rows="10" cols="50" id="description" \
+				placeholder="Enter description:"></textarea>
+			</p>
+			<p><input type="submit" value="Add User" id="submit"></p>
+		</form>
+	</div>
+	<div id="right_side">
+	</div>
+</body>
+</html>
